@@ -75,14 +75,14 @@ class App extends Component {
 
   filter(items, filter) {
     switch (filter) {
-    case 'all':
-      return items;
-    case 'active':
-      return items.filter((items) => !items.done);
-    case 'done':
-      return items.filter((items) => items.done);
-    default:
-      return items;
+      case 'all':
+        return items;
+      case 'active':
+        return items.filter((items) => !items.done);
+      case 'done':
+        return items.filter((items) => items.done);
+      default:
+        return items;
     }
   }
 
