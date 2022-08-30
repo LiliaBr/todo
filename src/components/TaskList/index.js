@@ -10,6 +10,7 @@ export default class TaskList extends Component {
     onToggleStatus: PropTypes.func,
     onDeleted: PropTypes.func,
   };
+
   render() {
     const { onDeleted, onToggleStatus, onToggleDone } = this.props;
 
@@ -32,7 +33,7 @@ export default class TaskList extends Component {
             onDeleted={() => onDeleted(id)}
             {...props}
           />
-          <input type="text" className="edit" label={this.props.label}></input>
+          <input type="text" className="edit" label={this.props.label} />
         </li>
       );
     });
