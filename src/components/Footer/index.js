@@ -10,8 +10,7 @@ export default class Footer extends Component {
     onFilterChange: PropTypes.func,
     onClearComleted: PropTypes.func,
     filter: PropTypes.string,
-  }
-
+  };
   render() {
     const { id, todoCount, filter, onFilterChange, onClearComleted } = this.props;
 
@@ -26,3 +25,4 @@ export default class Footer extends Component {
     );
   }
 }
+

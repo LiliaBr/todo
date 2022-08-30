@@ -17,7 +17,7 @@ class App extends Component {
       id: PropTypes.number,
     }),
   };
-
+  
   state = {
     todos: [
       this.createTodoItem('Completed task'),
@@ -26,15 +26,6 @@ class App extends Component {
     ],
     filter: 'all',
   };
-
-  toggleProperty(arr, id, propName) {
-    const index = arr.findIndex((el) => el.id === id);
-
-    const newArr = [...arr];
-    newArr[index][propName] = !newArr[index][propName];
-
-    return newArr;
-  }
 
   createTodoItem(label) {
     return {
@@ -54,15 +45,11 @@ class App extends Component {
   };
 
   onToggleDone = (id) => {
-    this.setState(({ todos }) => {
-      return this.toggleProperty(todos, id, 'done');
-    });
+    this.setState(({ todos }) => this.toggleProperty(todos, id, 'done'));
   };
 
   onToggleStatus = (id) => {
-    this.setState(({ todos }) => {
-      return this.toggleProperty(todos, id, 'status');
-    });
+    this.setState(({ todos }) => this.toggleProperty(todos, id, 'status'));
   };
 
   deleteItem = (id) => {
@@ -97,6 +84,15 @@ class App extends Component {
       default:
         return items;
     }
+  }
+
+  toggleProperty(arr, id, propName) {
+    const index = arr.findIndex((el) => el.id === id);
+
+    const newArr = [...arr];
+    newArr[index][propName] = !newArr[index][propName];
+
+    return newArr;
   }
 
   render() {
