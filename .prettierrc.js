@@ -1,11 +1,7 @@
 module.exports = {
-  arrowParens: 'always',
-  semi: true,
   singleQuote: true,
-  trailingComma: 'es5',
-  vueIndentScriptAndStyle: true,
-  bracketSpacing: true,
-  jsxBracketSameLine: false,
+  semi: false,
+  trailingComma: "es5",
   endOfLine: "lf",
   printWidth: 120
-};
+}

@@ -17,7 +17,7 @@ class App extends Component {
       id: PropTypes.number,
     }),
   };
-  
+
   state = {
     todos: [
       this.createTodoItem('Completed task'),
@@ -33,8 +33,8 @@ class App extends Component {
       done: false,
       status: false,
       id: this.maxId++,
-    };
-  }
+    }
+  };
 
   addItem = (text) => {
     const newItem = this.createTodoItem(text);
@@ -84,7 +84,7 @@ class App extends Component {
       default:
         return items;
     }
-  }
+  };
 
   toggleProperty(arr, id, propName) {
     const index = arr.findIndex((el) => el.id === id);

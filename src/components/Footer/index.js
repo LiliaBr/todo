@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 import Filter from '../TasksFilter/index';
 import './index.css';
@@ -14,7 +14,6 @@ export default class Footer extends Component {
   };
   render() {
     const { id, todoCount, filter, onFilterChange, onClearComleted } = this.props;
-
     return (
       <footer className="footer">
         <span className="todo-count">{todoCount} items left</span>
@@ -26,4 +25,3 @@ export default class Footer extends Component {
     );
   }
 }
-
