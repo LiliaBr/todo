@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { formatDistanceToNowStrict } from 'date-fns';
-
 import './index.css';
 
 export default class Task extends Component {
@@ -16,9 +14,7 @@ export default class Task extends Component {
   };
 
   render() {
-    const {
-      done, label, onToggleDone, onToggleStatus, onDeleted,
-    } = this.props;
+    const { done, label, onToggleDone, onToggleStatus, onDeleted } = this.props;
 
     return (
       <div className="view">
@@ -30,7 +26,6 @@ export default class Task extends Component {
           <span className="created">
             created
             {formatDistanceToNowStrict(new Date())}
-            {' '}
             ago
           </span>
         </label>
