@@ -43,7 +43,7 @@ class App extends Component {
       return { todos: newArr };
     });
   };
-
+  
   onToggleDone = (id) => {
     this.setState(({ todos }) => this.toggleProperty(todos, id, 'done'));
   };

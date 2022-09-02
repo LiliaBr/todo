@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { formatDistanceToNowStrict } from 'date-fns';
 import './index.css';
 
-export default function Task({ done, label, onToggleDone, onToggleStatus, onDeleted }) {
+export default function Task({ done, label, onToggleDone, onDeleted }) {
   return (
     <div className="view">
       <input className="toggle" checked={done} type="checkbox" onChange={onToggleDone} />
