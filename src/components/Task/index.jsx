@@ -17,7 +17,7 @@ export default function Task({ done, label, onToggleDone, onToggleStatus, onDele
           ago
         </span>
       </label>
-      <button type="button" className="icon icon-edit" onClick={onToggleStatus} />
+      <button type="button" className="icon icon-edit" />
       <button type="button" className="icon icon-destroy" onClick={onDeleted} />
     </div>
   );
