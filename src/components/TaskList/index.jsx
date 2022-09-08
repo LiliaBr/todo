@@ -12,7 +12,7 @@ export default class TaskList extends Component {
   };
 
   render() {
-    const { onDeleted, onToggleStatus, onToggleDone } = this.props;
+    const { onDeleted, onToggleStatus, onToggleDone, onToggleTimer } = this.props;
 
     const elements = this.props.todos.map((item) => {
       const { id, ...props } = item;
@@ -31,6 +31,7 @@ export default class TaskList extends Component {
             onToggleDone={() => onToggleDone(id)}
             onToggleStatus={() => onToggleStatus(id)}
             onDeleted={() => onDeleted(id)}
+            onToggleTimer={() => onToggleTimer(id)}
             {...props}
           />
           <input type="text" className="edit" label={this.props.label} />
