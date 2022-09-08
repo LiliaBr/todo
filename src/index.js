@@ -111,7 +111,6 @@ class App extends Component {
           onDeleted={this.deleteItem}
           onToggleStatus={this.onToggleStatus}
           onToggleDone={this.onToggleDone}
-          onToggleTimer={(id) => console.warn(id)}
         />
         <Footer
           todos={visibleItems}
