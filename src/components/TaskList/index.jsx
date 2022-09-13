@@ -1,48 +1,60 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Task from '../Task/index';
 import './index.css';
 
-export default class TaskList extends Component {
-  static propTypes = {
-    onToggleDone: PropTypes.func,
-    onToggleStatus: PropTypes.func,
-    onDeleted: PropTypes.func,
+export default function TaskList({ todos, onDeleted, onToggleDone, onToggleTimer, filtered }) {
+  const [localTodos, setlocalTodos] = useState(todos);
+
+  const filter = (status) => {
+    const changedTodos = todos.filter((el) => el.status === status);
+    setlocalTodos(changedTodos);
   };
 
-  render() {
-    const { onDeleted, onToggleStatus, onToggleDone, onToggleTimer } = this.props;
+  useEffect(() => {
+    if (filtered === 'active') {
+      filter(false);
+    }
+    if (filtered === 'done') {
+      filter(true);
+    }
+    if (filtered === 'all') {
+      setlocalTodos(todos);
+    }
+  }, [filtered, todos]);
 
-    const elements = this.props.todos.map((item) => {
-      const { id, ...props } = item;
-      let classNames = '';
+  const elements = localTodos.map((item) => {
+    let classNames = '';
 
-      if (item.done) {
-        classNames += 'completed';
-      }
-      if (item.status) {
-        classNames += 'editing';
-      }
-
-      return (
-        <li key={id} className={classNames}>
-          <Task
-            onToggleDone={() => onToggleDone(id)}
-            onToggleStatus={() => onToggleStatus(id)}
-            onDeleted={() => onDeleted(id)}
-            onToggleTimer={() => onToggleTimer(id)}
-            {...props}
-          />
-          <input type="text" className="edit" label={this.props.label} />
-        </li>
-      );
-    });
+    if (item.status) {
+      classNames += 'completed';
+    }
 
     return (
-      <section className="main">
-        <ul className="todo-list">{elements}</ul>
-      </section>
+      <li key={item.id} className={classNames}>
+        <Task
+          label={item.label}
+          status={item.status}
+          onToggleDone={() => onToggleDone(item.id)}
+          onDeleted={() => onDeleted(item.id)}
+          onToggleTimer={() => onToggleTimer(item.id)}
+        />
+        <input type="text" className="edit" label={item.label} />
+      </li>
     );
-  }
+  });
+
+  return (
+    <section className="main">
+      <ul className="todo-list">{elements}</ul>
+    </section>
+  );
 }
+TaskList.defaultProps = {
+  todos: [],
+};
+
+TaskList.propTypes = {
+  todos: PropTypes.array,
+};

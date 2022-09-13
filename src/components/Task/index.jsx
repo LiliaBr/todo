@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { formatDistanceToNowStrict } from 'date-fns';
 import './index.css';
 
-export default function Task({ done, label, onToggleDone, onDeleted }) {
+export default function Task({ status, label, onToggleDone, onDeleted }) {
   const [sec, setSeconds] = useState(0);
   const [timer, setTimer] = useState(false);
 
@@ -13,7 +13,7 @@ export default function Task({ done, label, onToggleDone, onDeleted }) {
       interval = setInterval(() => {
         setSeconds((sec) => sec + 1);
       }, 1000);
-    } else if (!timer && sec !== 0) {
+    } else if (!timer && sec != 0) {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
@@ -25,6 +25,7 @@ export default function Task({ done, label, onToggleDone, onDeleted }) {
       setTimer(!timer);
     }
   }
+
   function timerFormat() {
     let m = Math.floor(sec / 60),
       s = sec % 60;
@@ -32,13 +33,12 @@ export default function Task({ done, label, onToggleDone, onDeleted }) {
     if (s < 10) s = `0${s}`;
     return `${m}:${s}`;
   }
+
   return (
     <div className="view">
-      <input className="toggle" checked={done} type="checkbox" onChange={onToggleDone} />
+      <input className="toggle" checked={status} type="checkbox" onChange={onToggleDone} />
       <label>
-        <span className="title" onClick={onToggleDone}>
-          {label}
-        </span>
+        <span className="title">{label}</span>
         <span className="description">created {formatDistanceToNowStrict(new Date())} ago</span>
         <span className="timer">
           <button className="icon-button play" onClick={(e) => toggleTimer(e)}></button>
@@ -52,11 +52,10 @@ export default function Task({ done, label, onToggleDone, onDeleted }) {
 }
 
 Task.defaultProps = {
-  done: false,
   status: false,
 };
 
 Task.propTypes = {
-  done: PropTypes.bool,
+  status: PropTypes.bool,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
